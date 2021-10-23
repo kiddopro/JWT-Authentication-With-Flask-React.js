@@ -12,7 +12,6 @@ from api.routes import api
 from api.admin import setup_admin
 
 # importaciones para correr la configuración jwt
-from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 #from models import Person
 
