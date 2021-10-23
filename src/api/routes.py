@@ -41,4 +41,12 @@ def signup():
     return jsonify({"msg": "User created"}), 200
 
 # private
-# @api.route('/private', methods=['GET'])
+@api.route('/private', methods=['GET'])
+@jwt_required()
+def private():
+    # Accede a la identidad del usuario actual con get_jwt_identity
+    current_user_id = get_jwt_identity()
+    user = User.filter.get(current_user_id)
+
+    # retornamos los datos del usuario que le pertenece ese token
+    return jsonify({"id": user.id, "username": user.username })
