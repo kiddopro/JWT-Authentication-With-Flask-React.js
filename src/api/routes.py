@@ -5,6 +5,10 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 
+# importación para crear token
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+
 api = Blueprint('api', __name__)
 
 
@@ -16,3 +20,27 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+# login de prueba
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=email, password=password).first()
+
+    if user is None:
+        return jsonify({"msg": "Bad email or password"}), 401
+    else:
+        access_token = create_access_token(identity=email)
+        return jsonify(access_token=access_token)
+
+
+@api.route("/signup", methods=['POST'])
+def signup():
+    request_body = request.json
+    isActive = request_body.get('isActive', True)
+    user = User(email=request_body['email'], password=request_body['password'], is_active=isActive)
+    db.session.add(user)
+    db.session.commit()
+    return jsonify({"msg": "User created"}), 200
