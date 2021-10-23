@@ -8,6 +8,7 @@ from api.utils import generate_sitemap, APIException
 # importación para crear token
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 api = Blueprint('api', __name__)
 
@@ -38,7 +39,7 @@ def signup():
     user = User(email=request_body['email'], password=request_body['password'], is_active=isActive)
     db.session.add(user)
     db.session.commit()
-    return jsonify({"msg": "User created"}), 200
+    return jsonify({"msg": "User correctly created"}), 200
 
 # private
 @api.route('/private', methods=['GET'])
@@ -46,7 +47,7 @@ def signup():
 def private():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user_id = get_jwt_identity()
-    user = User.filter.get(current_user_id)
+    user = User.query.get(current_user_id)
 
     # retornamos los datos del usuario que le pertenece ese token
-    return jsonify({"id": user.id, "username": user.username })
+    return jsonify({"id": user.id, "email": user.email })
