@@ -18,13 +18,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			password: ""
 		},
 		actions: {
-			createUser: () => {
+			createUser: (e, p) => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 
 				var raw = JSON.stringify({
-					email: "kate141@mail.com",
-					password: "1234"
+					email: e,
+					password: p
 				});
 
 				var requestOptions = {
