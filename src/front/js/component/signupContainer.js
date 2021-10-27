@@ -37,12 +37,15 @@ const SignupContainer = () => {
 						onChange={e => setPassword(e.target.value)}
 					/>
 				</div>
-				<button
-					type="button"
-					className="btn btn-outline-warning"
-					onClick={() => actions.createUser(email, password)}>
-					Crear
-				</button>
+				<div className="d-flex justify-content-between align-items-center">
+					<button
+						type="button"
+						className="btn btn-outline-warning"
+						onClick={() => actions.createUser(email, password)}>
+						Crear
+					</button>
+					<a href="#">You already have an account?</a>
+				</div>
 			</form>
 		</>
 	);
