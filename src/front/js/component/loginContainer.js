@@ -42,7 +42,7 @@ const LoginContainer = () => {
 						type="button"
 						className="btn btn-outline-warning"
 						onClick={() => actions.loginUser(email, password)}>
-						Crear
+						Login
 					</button>
 
 					<a href="#">You have an account? Login</a>
