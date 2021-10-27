@@ -13,9 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			],
-			email: "",
-			password: ""
+			]
 		},
 		actions: {
 			createUser: (e, p) => {

@@ -37,8 +37,11 @@ const Sign = () => {
 						onChange={e => setPassword(e.target.value)}
 					/>
 				</div>
-				<button type="button" className="btn btn-primary" onClick={() => actions.createUser(email, password)}>
-					Submit
+				<button
+					type="button"
+					className="btn btn-outline-warning"
+					onClick={() => actions.createUser(email, password)}>
+					Crear
 				</button>
 			</form>
 		</>
