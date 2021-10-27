@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import Sign from "../component/signupContainer";
+import React from "react";
 
-import { Context } from "../store/appContext";
+import Sign from "../component/signupContainer";
 
 const Signup = () => {
 	return (

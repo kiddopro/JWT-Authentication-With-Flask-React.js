@@ -3,10 +3,10 @@ import { Context } from "../store/appContext";
 
 import TitleSignUp from "./titleSignup";
 
-const Sign = () => {
+const SignupContainer = () => {
 	const { actions, store } = useContext(Context);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState();
+	const [password, setPassword] = useState();
 	return (
 		<>
 			<TitleSignUp />
@@ -48,4 +48,4 @@ const Sign = () => {
 	);
 };
 
-export default Sign;
+export default SignupContainer;
