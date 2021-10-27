@@ -45,7 +45,7 @@ const LoginContainer = () => {
 						Crear
 					</button>
 
-					<a href="#">Or Login</a>
+					<a href="#">You have an account? Login</a>
 				</div>
 			</form>
 		</>
