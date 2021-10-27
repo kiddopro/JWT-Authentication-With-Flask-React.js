@@ -45,7 +45,7 @@ const LoginContainer = () => {
 						Login
 					</button>
 
-					<a href="#">You have an account? Login</a>
+					<a href="#">You dont have an account?</a>
 				</div>
 			</form>
 		</>
