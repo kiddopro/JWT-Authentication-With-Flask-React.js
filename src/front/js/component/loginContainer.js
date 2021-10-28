@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import TitleLogin from "./titleLogin";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const LoginContainer = () => {
 	const [email, setEmail] = useState();
@@ -44,8 +45,9 @@ const LoginContainer = () => {
 						onClick={() => actions.loginUser(email, password)}>
 						Login
 					</button>
-
-					<a href="#">You dont have an account?</a>
+					<Link to="/signup">
+						<a href="#goToSignup">You dont have an account?</a>
+					</Link>
 				</div>
 			</form>
 		</>

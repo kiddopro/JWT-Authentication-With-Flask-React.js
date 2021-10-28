@@ -3,6 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	const URL_PLANETAS = "https://www.swapi.tech/api/planets?page=1&limit=100";
 
+	const URL_SERVIDOR = "https://3001-gold-bass-o3whf7lc.ws-us18.gitpod.io/api/";
+
 	return {
 		store: {
 			message: null,
@@ -41,7 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch("https://3001-lime-seahorse-mqtyfpc5.ws-us17.gitpod.io/api/signup", requestOptions)
+				fetch(URL_SERVIDOR + "signup", requestOptions)
 					.then(response => response.text())
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));

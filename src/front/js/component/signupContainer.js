@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import TitleSignUp from "./titleSignup";
@@ -44,7 +45,9 @@ const SignupContainer = () => {
 						onClick={() => actions.createUser(email, password)}>
 						Crear
 					</button>
-					<a href="#">You already have an account?</a>
+					<Link to="/login">
+						<a href="#goToLogin">You already have an account?</a>
+					</Link>
 				</div>
 			</form>
 		</>
