@@ -29,7 +29,7 @@ def login():
         # de lo contrario se crea un token haciendo referencia a la id del usuario
         access_token = create_access_token(identity=user.id)
         # retornamos un json con los datos del token y la id de usuario a la que se le esta asignando el mismo
-        return jsonify({"token": access_token, "user_id": user.id, "msg": "user login in correctly" })
+        return jsonify({"token": access_token, "user_id": user.id, "msg": "user login in correctly", "status": 200})
 
 # signup
 @api.route("/signup", methods=['POST'])

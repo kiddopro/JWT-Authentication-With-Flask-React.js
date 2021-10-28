@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	const URL_PLANETAS = "https://www.swapi.tech/api/planets?page=1&limit=100";
 
-	const URL_SERVIDOR = "https://3001-gold-bass-o3whf7lc.ws-us18.gitpod.io/api/";
+	const URL_SERVIDOR = "https://3001-crimson-anaconda-eijs4bqk.ws-us18.gitpod.io/api/";
 
 	return {
 		store: {
@@ -45,7 +45,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch(URL_SERVIDOR + "login", requestOptions)
 					.then(response => response.json())
-					.then(result => console.log(result))
+					.then(result => {
+						result.status = 200 ? localStorage.setItem("token", result.token) : console.log(result.msg);
+					})
 					.catch(error => console.log("error", error));
 			},
 			createUser: (e, p) => {
