@@ -27,6 +27,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planet: {}
 		},
 		actions: {
+			loginUser: (e, p) => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+					email: e,
+					password: p
+				});
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(URL_SERVIDOR + "login", requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("error", error));
+			},
 			createUser: (e, p) => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -44,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch(URL_SERVIDOR + "signup", requestOptions)
-					.then(response => response.text())
+					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
