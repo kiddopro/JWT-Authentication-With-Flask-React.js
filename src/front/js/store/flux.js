@@ -1,4 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const URL_PERSONAJES = "https://www.swapi.tech/api/people?page=1&limit=100";
+
+	const URL_PLANETAS = "https://www.swapi.tech/api/planets?page=1&limit=100";
+
 	return {
 		store: {
 			message: null,
@@ -13,7 +17,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			listaPersonajes: [],
+			listaPlanetas: [],
+			favorites: [],
+			character: {},
+			planet: {}
 		},
 		actions: {
 			createUser: (e, p) => {
@@ -38,9 +47,65 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
+			getCharacter: id => {
+				const store = getStore();
+				fetch("https://www.swapi.tech/api/people/" + id)
+					.then(res => res.json())
+					.then(data => {
+						setStore({ character: data.result });
+					})
+					.catch(err => err);
+			},
+			getPlanet: id => {
+				fetch("https://www.swapi.tech/api/planets/" + id)
+					.then(res => res.json())
+					.then(data => {
+						setStore({ planet: data.result }); //seteamos el valor del state planet con el objeto que se encuentra en la respuesta del json.result
+					})
+					.catch(err => err);
+			},
+			isActive: item => {
+				const store = getStore();
+				if (store.favorites.includes(item)) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			setFavorites: favorite => {
+				const store = getStore();
+				if (store.favorites.includes(favorite)) {
+					getActions().removeFavorites(favorite);
+				} else {
+					setStore({ favorites: [...store.favorites, favorite] });
+				}
+			},
+			removeFavorites: favorite => {
+				const store = getStore();
+				let newList = store.favorites.filter(elem => elem != favorite);
+				setStore({ favorites: newList });
+			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+			loadSomeData: () => {
+				fetch(URL_PERSONAJES)
+					.then(res => res.json())
+					.then(response => {
+						// store.actions.addPersonajes(response.results);
+
+						setStore({ listaPersonajes: response.results });
+					})
+					.catch(err => err);
+
+				fetch(URL_PLANETAS)
+					.then(res => res.json())
+					.then(data => {
+						setStore({ listaPlanetas: data.results });
+					})
+					.catch();
 			},
 
 			getMessage: () => {
